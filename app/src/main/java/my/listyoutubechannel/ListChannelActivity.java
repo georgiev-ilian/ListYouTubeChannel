@@ -8,7 +8,7 @@ import io.reactivex.disposables.Disposable;
 import my.listyoutubechannel.service.ChannelVideosResponse;
 import my.listyoutubechannel.service.YouTubeService;
 
-public class ListYouTubeChannelActivity extends AppCompatActivity {
+public class ListChannelActivity extends AppCompatActivity {
 
     private Disposable disposable;
 
