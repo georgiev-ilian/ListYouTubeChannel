@@ -33,7 +33,7 @@ public class VideoListFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_list_channel, container, false);
+        View view = inflater.inflate(R.layout.fragment_video_list, container, false);
 
         VideoListViewModelFactory factory = InjectorUtils.provideVideoListViewModelFactory();
         viewModel = ViewModelProviders.of(this, factory).get(VideoListViewModel.class);

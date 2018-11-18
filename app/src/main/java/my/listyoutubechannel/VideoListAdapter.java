@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
-import my.listyoutubechannel.databinding.ListChannelItemBinding;
+import my.listyoutubechannel.databinding.VideoListItemBinding;
 import my.listyoutubechannel.service.Item;
 
 /**
@@ -33,10 +33,10 @@ public class VideoListAdapter extends RecyclerView.Adapter<VideoListAdapter.View
             layoutInflater = LayoutInflater.from(viewGroup.getContext());
         }
 
-        ListChannelItemBinding binding = DataBindingUtil.inflate(layoutInflater,
-                                                                 R.layout.list_channel_item,
-                                                                 viewGroup,
-                                                                 false);
+        VideoListItemBinding binding = DataBindingUtil.inflate(layoutInflater,
+                                                               R.layout.video_list_item,
+                                                               viewGroup,
+                                                               false);
 
         return new ViewHolder(binding);
     }
@@ -63,9 +63,9 @@ public class VideoListAdapter extends RecyclerView.Adapter<VideoListAdapter.View
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        ListChannelItemBinding binding;
+        VideoListItemBinding binding;
 
-        ViewHolder(@NonNull ListChannelItemBinding binding) {
+        ViewHolder(@NonNull VideoListItemBinding binding) {
             super(binding.getRoot());
 
             this.binding = binding;
