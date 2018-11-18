@@ -1,4 +1,4 @@
-package my.listyoutubechannel;
+package my.listyoutubechannel.data;
 
 import android.databinding.BindingAdapter;
 import android.widget.ImageView;
