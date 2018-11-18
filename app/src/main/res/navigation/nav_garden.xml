@@ -21,9 +21,9 @@
         android:name="my.listyoutubechannel.VideoDetailFragment"
         android:label="Video detail"
         tools:layout="@layout/fragment_video_detail">
-        <!--<argument
+        <argument
             android:name="videoId"
-            app:type="string" />-->
+            app:argType="string"/>
     </fragment>
 
 </navigation>
