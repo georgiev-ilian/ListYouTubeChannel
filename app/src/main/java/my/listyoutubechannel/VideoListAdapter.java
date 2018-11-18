@@ -10,8 +10,8 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
+import my.listyoutubechannel.data.service.Item;
 import my.listyoutubechannel.databinding.VideoListItemBinding;
-import my.listyoutubechannel.service.Item;
 
 /**
  * Created by ilian.

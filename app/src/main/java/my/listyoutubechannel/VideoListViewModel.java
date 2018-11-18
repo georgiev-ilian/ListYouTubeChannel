@@ -5,7 +5,7 @@ import android.arch.lifecycle.ViewModel;
 import android.support.annotation.NonNull;
 
 import my.listyoutubechannel.data.YouTubeRepository;
-import my.listyoutubechannel.service.ChannelVideosResponse;
+import my.listyoutubechannel.data.service.ChannelVideosResponse;
 
 /**
  * Created by ilian.

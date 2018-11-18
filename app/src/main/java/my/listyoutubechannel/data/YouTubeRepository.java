@@ -3,8 +3,8 @@ package my.listyoutubechannel.data;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 
-import my.listyoutubechannel.service.ChannelVideosResponse;
-import my.listyoutubechannel.service.YouTubeService;
+import my.listyoutubechannel.data.service.ChannelVideosResponse;
+import my.listyoutubechannel.data.service.YouTubeService;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

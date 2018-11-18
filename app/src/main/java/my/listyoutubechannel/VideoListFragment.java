@@ -14,8 +14,8 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-import my.listyoutubechannel.service.ChannelVideosResponse;
-import my.listyoutubechannel.service.Item;
+import my.listyoutubechannel.data.service.ChannelVideosResponse;
+import my.listyoutubechannel.data.service.Item;
 
 /**
  * Created by ilian.

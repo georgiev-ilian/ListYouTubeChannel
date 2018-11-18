@@ -1,4 +1,4 @@
-package my.listyoutubechannel.service;
+package my.listyoutubechannel.data.service;
 
 import retrofit2.Call;
 import retrofit2.Retrofit;
