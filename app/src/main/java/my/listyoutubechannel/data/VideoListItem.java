@@ -14,12 +14,12 @@ public final class VideoListItem {
 
     private String title;
 
-    private String url;
+    private String thumbnailUrl;
 
-    public VideoListItem(String id, String title, String url) {
+    public VideoListItem(String id, String title, String thumbnailUrl) {
         this.id = id;
         this.title = title;
-        this.url = url;
+        this.thumbnailUrl = thumbnailUrl;
     }
 
     public String getId() {
@@ -38,13 +38,13 @@ public final class VideoListItem {
         this.title = title;
     }
 
-    public String getUrl() {
-        return url;
+    public String getThumbnailUrl() {
+        return thumbnailUrl;
     }
 
     @SuppressWarnings("unused")
-    public void setUrl(String url) {
-        this.url = url;
+    public void setThumbnailUrl(String thumbnailUrl) {
+        this.thumbnailUrl = thumbnailUrl;
     }
 
     @BindingAdapter("imageFromUrl")
