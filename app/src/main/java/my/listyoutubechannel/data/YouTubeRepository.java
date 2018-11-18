@@ -4,7 +4,9 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import my.listyoutubechannel.data.service.ChannelVideosResponse;
 import my.listyoutubechannel.data.service.Item;
@@ -18,13 +20,17 @@ import retrofit2.Response;
  */
 public class YouTubeRepository {
 
-    String channelId = "UC_A--fhX5gea0i4UtpD99Gg";
+    private String channelId = "UC_A--fhX5gea0i4UtpD99Gg";
 
-    String maxResults = "20";
+    private String maxResults = "20";
 
-    String key = "AIzaSyAEV6gn8EKbAL9uQfX8XfrYG3v3vsIqEY8";
+    private String key = "AIzaSyAEV6gn8EKbAL9uQfX8XfrYG3v3vsIqEY8";
 
     private YouTubeService.YouTube youTube;
+
+    //private MutableLiveData<Map<String, VideoDetail>> videoDetailMap;
+
+    private Map<String, VideoDetail> videoDetailMap = new HashMap<>();
 
     public YouTubeRepository() {
         youTube = YouTubeService.create();
@@ -43,12 +49,22 @@ public class YouTubeRepository {
                            List<VideoListItem> list = new ArrayList<>();
 
                            for (Item item : channelVideosResponse.getItems()) {
-                               list.add(new VideoListItem(item.getId().getVideoId(),
-                                                          item.getSnippet().getTitle(),
-                                                          item.getSnippet()
-                                                              .getThumbnails()
-                                                              .getMedium()
-                                                              .getUrl()));
+                               String videoId = item.getId().getVideoId();
+                               final String title = item.getSnippet().getTitle();
+
+                               final String thumbnailUrl =
+                                       item.getSnippet().getThumbnails().getMedium().getUrl();
+
+                               list.add(new VideoListItem(videoId, title, thumbnailUrl));
+
+                               VideoDetail videoDetail = new VideoDetail(videoId,
+                                                                         title,
+                                                                         thumbnailUrl,
+                                                                         item.getSnippet()
+                                                                             .getPublishedAt(),
+                                                                         item.getSnippet()
+                                                                             .getDescription());
+                               videoDetailMap.put(videoId, videoDetail);
                            }
 
                            data.setValue(list);
