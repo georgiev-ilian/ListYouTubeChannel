@@ -1,4 +1,4 @@
-package my.listyoutubechannel;
+package my.listyoutubechannel.data;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;

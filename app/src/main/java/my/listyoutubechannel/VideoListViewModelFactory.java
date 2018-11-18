@@ -4,6 +4,8 @@ import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
 import android.support.annotation.NonNull;
 
+import my.listyoutubechannel.data.YouTubeRepository;
+
 /**
  * Created by ilian.
  */
