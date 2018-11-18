@@ -14,8 +14,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-import my.listyoutubechannel.data.service.ChannelVideosResponse;
-import my.listyoutubechannel.data.service.Item;
+import my.listyoutubechannel.data.VideoListItem;
 import my.listyoutubechannel.util.InjectorUtils;
 
 /**
@@ -23,7 +22,7 @@ import my.listyoutubechannel.util.InjectorUtils;
  */
 public class VideoListFragment extends Fragment {
 
-    private List<Item> itemList = new ArrayList<>();
+    private List<VideoListItem> itemList = new ArrayList<>();
 
     private VideoListViewModel viewModel;
 
@@ -44,12 +43,11 @@ public class VideoListFragment extends Fragment {
         recyclerView.setAdapter(adapter);
 
         viewModel.getVideoList().observe(getViewLifecycleOwner(),
-                                         new Observer<ChannelVideosResponse>() {
+                                         new Observer<List<VideoListItem>>() {
                                              @Override
-                                             public void onChanged(@Nullable
-                                                                           ChannelVideosResponse channelVideosResponse) {
-                                                 adapter = new VideoListAdapter(
-                                                         channelVideosResponse.getItems());
+                                             public void onChanged(
+                                                     @Nullable List<VideoListItem> videoList) {
+                                                 adapter = new VideoListAdapter(videoList);
                                                  recyclerView.setAdapter(adapter);
                                              }
                                          });

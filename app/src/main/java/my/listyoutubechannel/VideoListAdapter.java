@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import java.util.List;
 
 import my.listyoutubechannel.data.VideoListItem;
-import my.listyoutubechannel.data.service.Item;
 import my.listyoutubechannel.databinding.VideoListItemBinding;
 
 /**
@@ -19,11 +18,11 @@ import my.listyoutubechannel.databinding.VideoListItemBinding;
  */
 public class VideoListAdapter extends RecyclerView.Adapter<VideoListAdapter.ViewHolder> {
 
-    private List<Item> videoList;
+    private List<VideoListItem> videoList;
 
     private LayoutInflater layoutInflater;
 
-    VideoListAdapter(List<Item> videoList) {
+    VideoListAdapter(List<VideoListItem> videoList) {
         this.videoList = videoList;
     }
 
@@ -44,7 +43,7 @@ public class VideoListAdapter extends RecyclerView.Adapter<VideoListAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        Item item = videoList.get(i);
+        VideoListItem item = videoList.get(i);
         viewHolder.bind(item, createClickListener());
     }
 
@@ -72,15 +71,9 @@ public class VideoListAdapter extends RecyclerView.Adapter<VideoListAdapter.View
             this.binding = binding;
         }
 
-        void bind(Item item, View.OnClickListener clickListener) {
+        void bind(VideoListItem videoListItem, View.OnClickListener clickListener) {
             binding.setClickListener(clickListener);
-            VideoListItem videoListItem = new VideoListItem("", item.getSnippet().getTitle(),
-                                                            item.getSnippet()
-                                                                .getThumbnails()
-                                                                .getMedium()
-                                                                .getUrl());
             binding.setItem(videoListItem);
-
             binding.executePendingBindings();
         }
     }

@@ -3,7 +3,11 @@ package my.listyoutubechannel.data;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import my.listyoutubechannel.data.service.ChannelVideosResponse;
+import my.listyoutubechannel.data.service.Item;
 import my.listyoutubechannel.data.service.YouTubeService;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -26,8 +30,8 @@ public class YouTubeRepository {
         youTube = YouTubeService.create();
     }
 
-    public LiveData<ChannelVideosResponse> getChannelVideos() {
-        final MutableLiveData<ChannelVideosResponse> data = new MutableLiveData<>();
+    public LiveData<List<VideoListItem>> getChannelVideos() {
+        final MutableLiveData<List<VideoListItem>> data = new MutableLiveData<>();
 
         youTube.getChannelVideos(channelId, maxResults, key)
                .enqueue(new Callback<ChannelVideosResponse>() {
@@ -35,7 +39,19 @@ public class YouTubeRepository {
                    public void onResponse(Call<ChannelVideosResponse> call,
                                           Response<ChannelVideosResponse> response) {
                        if (response.isSuccessful()) {
-                           data.setValue(response.body());
+                           ChannelVideosResponse channelVideosResponse = response.body();
+                           List<VideoListItem> list = new ArrayList<>();
+
+                           for (Item item : channelVideosResponse.getItems()) {
+                               list.add(new VideoListItem(item.getId().getVideoId(),
+                                                          item.getSnippet().getTitle(),
+                                                          item.getSnippet()
+                                                              .getThumbnails()
+                                                              .getMedium()
+                                                              .getUrl()));
+                           }
+
+                           data.setValue(list);
                        }
                    }
 
@@ -44,6 +60,7 @@ public class YouTubeRepository {
                        data.setValue(null);
                    }
                });
+
         return data;
     }
 

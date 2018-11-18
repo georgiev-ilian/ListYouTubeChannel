@@ -4,8 +4,10 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.ViewModel;
 import android.support.annotation.NonNull;
 
+import java.util.List;
+
+import my.listyoutubechannel.data.VideoListItem;
 import my.listyoutubechannel.data.YouTubeRepository;
-import my.listyoutubechannel.data.service.ChannelVideosResponse;
 
 /**
  * Created by ilian.
@@ -20,7 +22,7 @@ public class VideoListViewModel extends ViewModel {
         this.youTubeRepository = youTubeRepository;
     }
 
-    public LiveData<ChannelVideosResponse> getVideoList() {
+    public LiveData<List<VideoListItem>> getVideoList() {
         return youTubeRepository.getChannelVideos();
     }
 }
