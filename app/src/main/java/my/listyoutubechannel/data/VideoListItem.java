@@ -16,7 +16,7 @@ public class VideoListItem {
 
     private String url;
 
-    VideoListItem(String id, String title, String url) {
+    public VideoListItem(String id, String title, String url) {
         this.id = id;
         this.title = title;
         this.url = url;

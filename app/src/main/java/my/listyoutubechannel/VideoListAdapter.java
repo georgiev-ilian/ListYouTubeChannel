@@ -74,7 +74,7 @@ public class VideoListAdapter extends RecyclerView.Adapter<VideoListAdapter.View
 
         void bind(Item item, View.OnClickListener clickListener) {
             binding.setClickListener(clickListener);
-            VideoListItem videoListItem = new VideoListItem(item.getSnippet().getTitle(),
+            VideoListItem videoListItem = new VideoListItem("", item.getSnippet().getTitle(),
                                                             item.getSnippet()
                                                                 .getThumbnails()
                                                                 .getMedium()
