@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="margin_normal">16dp</dimen>
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="video_list_item_title_margin_top">5dp</dimen>
+
+    <dimen name="video_list_item_thumbnail_height">180dp</dimen>
+    <dimen name="video_list_item_thumbnail_width">320dp</dimen>
+</resources>
