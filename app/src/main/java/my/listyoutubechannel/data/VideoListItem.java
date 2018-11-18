@@ -8,7 +8,7 @@ import com.bumptech.glide.Glide;
 /**
  * Created by ilian.
  */
-public class VideoListItem {
+public final class VideoListItem {
 
     private String id;
 
