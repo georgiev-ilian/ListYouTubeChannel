@@ -1,5 +1,6 @@
-package my.listyoutubechannel;
+package my.listyoutubechannel.util;
 
+import my.listyoutubechannel.VideoListViewModelFactory;
 import my.listyoutubechannel.data.YouTubeRepository;
 
 /**
