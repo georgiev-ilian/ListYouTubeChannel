@@ -4,11 +4,11 @@ import android.arch.paging.PagedListAdapter;
 import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.navigation.Navigation;
 import my.listyoutubechannel.data.VideoListItem;
 import my.listyoutubechannel.databinding.VideoListItemBinding;
 
@@ -49,7 +49,11 @@ public class VideoListAdapter extends PagedListAdapter<VideoListItem, VideoListA
     }
 
     private View.OnClickListener createClickListener() {
-        return view -> Log.d("VideoListAdapter", "onClick: video");
+        return view -> {
+            VideoListFragmentDirections.ActionPlantListFragmentToPlantDetailFragment direction =
+                    VideoListFragmentDirections.actionPlantListFragmentToPlantDetailFragment("hello");
+            Navigation.findNavController(view).navigate(direction);
+        };
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
