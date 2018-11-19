@@ -5,4 +5,7 @@
     <!-- Accessibility -->
     <string name="video_list_item_thumbnail_desc" translation_description="Accessibility text for each of thumbnails shown in the list.">Video thumbnail</string>
     <string name="video_detail_image_content_description">Video image</string>
+
+    <string name="label_navigation_video_list">Video list</string>
+    <string name="label_navigation_video_detail">Video detail</string>
 </resources>
