@@ -15,6 +15,8 @@ import android.widget.TextView;
 import my.listyoutubechannel.databinding.FragmentVideoDetailBinding;
 import my.listyoutubechannel.util.InjectorUtils;
 
+import static my.listyoutubechannel.util.ViewUtil.setTextWithSpanLabel;
+
 /**
  * Created by ilian.
  */
@@ -63,6 +65,8 @@ public class VideoDetailFragment extends Fragment {
 
     @BindingAdapter("app:datePublishedText")
     public static void setDatePublished(TextView view, String datePublishedText) {
-        view.setText(datePublishedText);
+        if (datePublishedText != null) {
+            setTextWithSpanLabel(view, datePublishedText);
+        }
     }
 }

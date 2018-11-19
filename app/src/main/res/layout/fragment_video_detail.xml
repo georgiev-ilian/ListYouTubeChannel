@@ -40,7 +40,7 @@
                     android:layout_height="match_parent"
                     android:contentDescription="@string/video_detail_image_content_description"
                     android:fitsSystemWindows="true"
-                    android:scaleType="centerCrop"
+                    android:scaleType="center"
                     app:imageFromUrl="@{videoDetail.thumbnailUrl}"
                     app:layout_collapseMode="parallax"/>
 
@@ -72,6 +72,7 @@
                     android:layout_marginStart="@dimen/margin_small"
                     android:layout_marginTop="@dimen/margin_normal"
                     android:layout_marginEnd="@dimen/margin_small"
+                    android:text="@string/label_video_date_published"
                     app:datePublishedText="@{videoDetail.datePublished}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -80,7 +81,7 @@
 
                 <TextView
                     android:id="@+id/video_description"
-                    style="?android:attr/textAppearanceLarge"
+                    style="?android:attr/textAppearanceMedium"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_small"

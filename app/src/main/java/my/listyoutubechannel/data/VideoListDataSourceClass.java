@@ -57,12 +57,13 @@ public class VideoListDataSourceClass extends PageKeyedDataSource<String, VideoL
                 final String title = item.getSnippet().getTitle();
 
                 final String thumbnailUrl = item.getSnippet().getThumbnails().getMedium().getUrl();
+                final String thumbnailDetailUrl =
+                        item.getSnippet().getThumbnails().getHigh().getUrl();
 
                 list.add(new VideoListItem(videoId, title, thumbnailUrl));
 
                 VideoDetail videoDetail = new VideoDetail(videoId,
-                                                          title,
-                                                          thumbnailUrl,
+                                                          title, thumbnailDetailUrl,
                                                           item.getSnippet().getPublishedAt(),
                                                           item.getSnippet().getDescription());
                 videoRepository.addVideoDetail(videoId, videoDetail);
@@ -97,12 +98,13 @@ public class VideoListDataSourceClass extends PageKeyedDataSource<String, VideoL
                 final String title = item.getSnippet().getTitle();
 
                 final String thumbnailUrl = item.getSnippet().getThumbnails().getMedium().getUrl();
+                final String thumbnailDetailUrl =
+                        item.getSnippet().getThumbnails().getHigh().getUrl();
 
                 list.add(new VideoListItem(videoId, title, thumbnailUrl));
 
                 VideoDetail videoDetail = new VideoDetail(videoId,
-                                                          title,
-                                                          thumbnailUrl,
+                                                          title, thumbnailDetailUrl,
                                                           item.getSnippet().getPublishedAt(),
                                                           item.getSnippet().getDescription());
                 videoRepository.addVideoDetail(videoId, videoDetail);
