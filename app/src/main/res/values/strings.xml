@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">List YouTube channel</string>
+    <string name="app_name">GMBN channel</string>
 
     <string name="label_video_date_published">Date published:</string>
     <string name="label_video_duration">Duration:</string>
