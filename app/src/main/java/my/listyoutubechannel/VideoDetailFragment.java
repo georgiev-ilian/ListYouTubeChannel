@@ -14,6 +14,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Objects;
 
 import my.listyoutubechannel.data.Constants;
@@ -29,20 +33,6 @@ public class VideoDetailFragment extends Fragment {
 
     private static final String ARG_ITEM_ITEM = "item_id";
 
-    private VideoDetailViewModel viewModel;
-
-    private CommentListAdapter adapter;
-
-    public static VideoDetailFragment newInstance(String videoId) {
-        Bundle args = new Bundle();
-        args.putString(ARG_ITEM_ITEM, videoId);
-
-        VideoDetailFragment fragment = new VideoDetailFragment();
-        fragment.setArguments(args);
-
-        return fragment;
-    }
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -53,7 +43,7 @@ public class VideoDetailFragment extends Fragment {
                                                                      container,
                                                                      false);
         String videoId = VideoDetailFragmentArgs.fromBundle(getArguments()).getVideoId();
-        setupViemModel(videoId, binding);
+        setupViewModel(videoId, binding);
 
         binding.setLifecycleOwner(this);
 
@@ -62,14 +52,15 @@ public class VideoDetailFragment extends Fragment {
         return binding.getRoot();
     }
 
-    private void setupViemModel(String videoId, FragmentVideoDetailBinding binding) {
+    private void setupViewModel(String videoId, FragmentVideoDetailBinding binding) {
         VideoDetailViewModelFactory factory = InjectorUtils.provideVideoDetailViewModelFactory(
                 videoId);
 
-        adapter = new CommentListAdapter();
+        CommentListAdapter adapter = new CommentListAdapter();
         binding.commentList.setAdapter(adapter);
 
-        viewModel = ViewModelProviders.of(this, factory).get(VideoDetailViewModel.class);
+        VideoDetailViewModel viewModel = ViewModelProviders.of(this, factory).get(
+                VideoDetailViewModel.class);
 
         viewModel.getListLiveData().observe(this, adapter::submitList);
         viewModel.getVideoDetail().observe(this, binding::setVideoDetail);
@@ -83,10 +74,33 @@ public class VideoDetailFragment extends Fragment {
         });
     }
 
+    public static VideoDetailFragment newInstance(String videoId) {
+        Bundle args = new Bundle();
+        args.putString(ARG_ITEM_ITEM, videoId);
+
+        VideoDetailFragment fragment = new VideoDetailFragment();
+        fragment.setArguments(args);
+
+        return fragment;
+    }
+
     @BindingAdapter("app:datePublishedText")
     public static void setDatePublished(TextView view, String datePublishedText) {
         if (datePublishedText != null) {
-            setTextWithSpanLabel(view, datePublishedText);
+            String text;
+
+            try {
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+                                                               Locale.getDefault());
+                SimpleDateFormat to = new SimpleDateFormat("dd-MM-yyyy HH:mm", Locale.getDefault());
+
+                Date date = format.parse(datePublishedText);
+                text = to.format(date);
+            } catch (ParseException e) {
+                text = datePublishedText;
+            }
+
+            setTextWithSpanLabel(view, text);
         }
     }
 
