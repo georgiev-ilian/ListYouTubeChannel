@@ -1,8 +1,5 @@
 package my.listyoutubechannel.data;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import io.reactivex.Observable;
 import my.listyoutubechannel.data.service.ChannelVideosResponse;
 import my.listyoutubechannel.data.service.YouTubeService;
@@ -20,11 +17,7 @@ public class YouTubeRepository {
 
     private YouTubeService.YouTube youTube;
 
-    //private MutableLiveData<Map<String, VideoDetail>> videoDetailMap;
-
-    private Map<String, VideoDetail> videoDetailMap = new HashMap<>();
-
-    public YouTubeRepository() {
+    private YouTubeRepository() {
         youTube = YouTubeService.create();
     }
 
