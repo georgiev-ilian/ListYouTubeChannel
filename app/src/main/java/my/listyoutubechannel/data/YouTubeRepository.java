@@ -4,6 +4,7 @@ import io.reactivex.Observable;
 import my.listyoutubechannel.data.service.YouTubeService;
 import my.listyoutubechannel.data.service.comment.CommentThreadResponse;
 import my.listyoutubechannel.data.service.search.ChannelVideosResponse;
+import my.listyoutubechannel.data.service.video.VideoListResponse;
 
 /**
  * Created by ilian.
@@ -28,6 +29,10 @@ public class YouTubeRepository {
 
     public Observable<CommentThreadResponse> getCommentThread(String videoId, String pageToken) {
         return youTube.getCommentThread(videoId, String.valueOf(MAX_RESULTS), KEY, pageToken);
+    }
+
+    public Observable<VideoListResponse> getVideoList(String videoId) {
+        return youTube.getVideoList(videoId, KEY);
     }
 
     public static YouTubeRepository getInstance() {

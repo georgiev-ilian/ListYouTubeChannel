@@ -94,11 +94,13 @@ public class VideoListDataSourceClass extends PageKeyedDataSource<String, VideoL
 
             list.add(new VideoListItem(videoId, title, thumbnailUrl));
 
-            VideoDetail videoDetail = new VideoDetail(videoId,
-                                                      title,
-                                                      thumbnailDetailUrl,
-                                                      item.getSnippet().getPublishedAt(),
-                                                      item.getSnippet().getDescription());
+            final VideoDetail videoDetail = new VideoDetail(videoId,
+                                                            title,
+                                                            thumbnailDetailUrl,
+                                                            item.getSnippet().getPublishedAt(),
+                                                            item.getSnippet().getDescription(),
+                                                            null);
+
             videoRepository.addVideoDetail(videoId, videoDetail);
         }
         return list;

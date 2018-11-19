@@ -39,7 +39,7 @@ public class VideoDetailViewModel extends ViewModel {
                                 VideoRepository videoRepository, String videoId) {
         this.videoRepository = videoRepository;
         this.youTubeRepository = youTubeRepository;
-        this.videoDetail = videoRepository.getVideoDetail(videoId);
+        this.videoDetail = videoRepository.getVideoDetail(youTubeRepository, videoId);
 
         commentThreadDataSourceFactory = new CommentThreadDataSourceFactory(youTubeRepository,
                                                                             compositeDisposable,
