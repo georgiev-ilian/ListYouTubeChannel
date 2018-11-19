@@ -15,15 +15,20 @@ public final class VideoDetail {
 
     private String description;
 
+    private String duration;
+
     public VideoDetail(String id,
                        String title,
-                       String thumbnailUrl, String datePublished,
-                       String description) {
+                       String thumbnailUrl,
+                       String datePublished,
+                       String description,
+                       String duration) {
         this.id = id;
         this.title = title;
         this.thumbnailUrl = thumbnailUrl;
         this.datePublished = datePublished;
         this.description = description;
+        this.duration = duration;
     }
 
     public String getId() {
@@ -64,5 +69,13 @@ public final class VideoDetail {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getDuration() {
+        return duration;
+    }
+
+    public void setDuration(String duration) {
+        this.duration = duration;
     }
 }
