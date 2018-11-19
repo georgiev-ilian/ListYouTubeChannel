@@ -30,9 +30,8 @@ public class VideoListViewModel extends ViewModel {
 
     private void initializePaging() {
         PagedList.Config pagedListConfig =
-                new PagedList.Config.Builder().setEnablePlaceholders(true)
-                                              .setInitialLoadSizeHint(20)
-                                              .setPageSize(20)
+                new PagedList.Config.Builder().setEnablePlaceholders(true).setInitialLoadSizeHint(
+                        YouTubeRepository.MAX_RESULTS).setPageSize(YouTubeRepository.MAX_RESULTS)
                                               .build();
 
         listLiveData = new LivePagedListBuilder<>(videoListDataSourceFactory,

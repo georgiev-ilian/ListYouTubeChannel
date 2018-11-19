@@ -12,11 +12,11 @@ import my.listyoutubechannel.data.service.YouTubeService;
  */
 public class YouTubeRepository {
 
-    private String channelId = "UC_A--fhX5gea0i4UtpD99Gg";
+    public static final int MAX_RESULTS = 20;
 
-    private String maxResults = "20";
+    private static final String CHANNEL_ID = "UC_A--fhX5gea0i4UtpD99Gg";
 
-    private String key = "AIzaSyAEV6gn8EKbAL9uQfX8XfrYG3v3vsIqEY8";
+    private static final String KEY = "AIzaSyAEV6gn8EKbAL9uQfX8XfrYG3v3vsIqEY8";
 
     private YouTubeService.YouTube youTube;
 
@@ -29,7 +29,7 @@ public class YouTubeRepository {
     }
 
     public Observable<ChannelVideosResponse> getChannelVideos(String pageToken) {
-        return youTube.getChannelVideos(channelId, maxResults, key, pageToken);
+        return youTube.getChannelVideos(CHANNEL_ID, String.valueOf(MAX_RESULTS), KEY, pageToken);
     }
 
     public static YouTubeRepository getInstance() {
