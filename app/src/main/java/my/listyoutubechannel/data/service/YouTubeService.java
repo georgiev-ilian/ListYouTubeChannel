@@ -12,7 +12,7 @@ import retrofit2.http.Query;
  */
 public class YouTubeService {
 
-    // https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=UC_A--fhX5gea0i4UtpD99Gg&maxResults=20&key=AIzaSyAEV6gn8EKbAL9uQfX8XfrYG3v3vsIqEY8
+    // https://www.googleapis.com/youtube/v3/search?part=snippet&order=date&channelId=UC_A--fhX5gea0i4UtpD99Gg&maxResults=20&key=AIzaSyAEV6gn8EKbAL9uQfX8XfrYG3v3vsIqEY8
 
     // https://www.googleapis.com/youtube/v3/videos?part=snippet&id=kX_hn3Xf90g&key=AIzaSyAEV6gn8EKbAL9uQfX8XfrYG3v3vsIqEY8
 
@@ -22,7 +22,7 @@ public class YouTubeService {
 
     public interface YouTube {
 
-        @GET("search?part=snippet")
+        @GET("search?part=snippet&order=date")
         Observable<ChannelVideosResponse> getChannelVideos(@Query("channelId") String channelId,
                                                            @Query("maxResults") String maxResults,
                                                            @Query("key") String key,
