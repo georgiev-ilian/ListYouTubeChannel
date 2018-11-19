@@ -2,6 +2,8 @@
     <string name="app_name">List YouTube channel</string>
 
     <string name="label_video_date_published">Date published:</string>
+    <string name="label_video_duration">Duration:</string>
+
     <!-- Accessibility -->
     <string name="video_list_item_thumbnail_desc" translation_description="Accessibility text for each of thumbnails shown in the list.">Video thumbnail</string>
     <string name="video_detail_image_content_description">Video image</string>
