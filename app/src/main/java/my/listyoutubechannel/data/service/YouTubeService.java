@@ -14,13 +14,9 @@ import retrofit2.http.Query;
  */
 public class YouTubeService {
 
-    // https://www.googleapis.com/youtube/v3/search?part=snippet&order=date&channelId=UC_A--fhX5gea0i4UtpD99Gg&maxResults=20&key=AIzaSyAEV6gn8EKbAL9uQfX8XfrYG3v3vsIqEY8
-
     // https://www.googleapis.com/youtube/v3/videos?part=snippet&id=kX_hn3Xf90g&key=AIzaSyAEV6gn8EKbAL9uQfX8XfrYG3v3vsIqEY8
 
     // https://www.googleapis.com/youtube/v3/videos?part=contentDetails&id=kX_hn3Xf90g&key=AIzaSyAEV6gn8EKbAL9uQfX8XfrYG3v3vsIqEY8
-
-    // https://www.googleapis.com/youtube/v3/commentThreads?part=snippet&videoId=8i0gra9Qyhw&key=AIzaSyAEV6gn8EKbAL9uQfX8XfrYG3v3vsIqEY8
 
     private static final String API_URL = "https://www.googleapis.com/youtube/v3/";
 
