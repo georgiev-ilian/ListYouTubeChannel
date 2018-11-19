@@ -17,13 +17,13 @@ import my.listyoutubechannel.data.service.Item;
  */
 public class VideoListDataSourceClass extends PageKeyedDataSource<String, VideoListItem> {
 
+    private final VideoRepository videoRepository;
+
     private YouTubeRepository repository;
 
     private MutableLiveData<String> progressLiveStatus;
 
     private CompositeDisposable compositeDisposable;
-
-    private final VideoRepository videoRepository;
 
     VideoListDataSourceClass(YouTubeRepository repository,
                              CompositeDisposable compositeDisposable,
@@ -50,24 +50,7 @@ public class VideoListDataSourceClass extends PageKeyedDataSource<String, VideoL
         }).subscribe((ChannelVideosResponse result) -> {
             progressLiveStatus.postValue(Constants.LOADED);
 
-            List<VideoListItem> list = new ArrayList<>();
-
-            for (Item item : result.getItems()) {
-                String videoId = item.getId().getVideoId();
-                final String title = item.getSnippet().getTitle();
-
-                final String thumbnailUrl = item.getSnippet().getThumbnails().getMedium().getUrl();
-                final String thumbnailDetailUrl =
-                        item.getSnippet().getThumbnails().getHigh().getUrl();
-
-                list.add(new VideoListItem(videoId, title, thumbnailUrl));
-
-                VideoDetail videoDetail = new VideoDetail(videoId,
-                                                          title, thumbnailDetailUrl,
-                                                          item.getSnippet().getPublishedAt(),
-                                                          item.getSnippet().getDescription());
-                videoRepository.addVideoDetail(videoId, videoDetail);
-            }
+            List<VideoListItem> list = getVideoListItems(result);
 
             callback.onResult(list, null, result.getNextPageToken());
         }, throwable -> progressLiveStatus.postValue(Constants.LOADED));
@@ -91,27 +74,33 @@ public class VideoListDataSourceClass extends PageKeyedDataSource<String, VideoL
         }).subscribe((ChannelVideosResponse result) -> {
             progressLiveStatus.postValue(Constants.LOADED);
 
-            List<VideoListItem> list = new ArrayList<>();
-
-            for (Item item : result.getItems()) {
-                String videoId = item.getId().getVideoId();
-                final String title = item.getSnippet().getTitle();
-
-                final String thumbnailUrl = item.getSnippet().getThumbnails().getMedium().getUrl();
-                final String thumbnailDetailUrl =
-                        item.getSnippet().getThumbnails().getHigh().getUrl();
-
-                list.add(new VideoListItem(videoId, title, thumbnailUrl));
-
-                VideoDetail videoDetail = new VideoDetail(videoId,
-                                                          title, thumbnailDetailUrl,
-                                                          item.getSnippet().getPublishedAt(),
-                                                          item.getSnippet().getDescription());
-                videoRepository.addVideoDetail(videoId, videoDetail);
-            }
+            List<VideoListItem> list = getVideoListItems(result);
 
             callback.onResult(list, result.getNextPageToken());
 
         }, throwable -> progressLiveStatus.postValue(Constants.LOADED));
+    }
+
+    @NonNull
+    private List<VideoListItem> getVideoListItems(ChannelVideosResponse result) {
+        List<VideoListItem> list = new ArrayList<>();
+
+        for (Item item : result.getItems()) {
+            String videoId = item.getId().getVideoId();
+            final String title = item.getSnippet().getTitle();
+
+            final String thumbnailUrl = item.getSnippet().getThumbnails().getMedium().getUrl();
+            final String thumbnailDetailUrl = item.getSnippet().getThumbnails().getHigh().getUrl();
+
+            list.add(new VideoListItem(videoId, title, thumbnailUrl));
+
+            VideoDetail videoDetail = new VideoDetail(videoId,
+                                                      title,
+                                                      thumbnailDetailUrl,
+                                                      item.getSnippet().getPublishedAt(),
+                                                      item.getSnippet().getDescription());
+            videoRepository.addVideoDetail(videoId, videoDetail);
+        }
+        return list;
     }
 }
