@@ -1,4 +1,4 @@
-package my.listyoutubechannel.data.service;
+package my.listyoutubechannel.data.service.video;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

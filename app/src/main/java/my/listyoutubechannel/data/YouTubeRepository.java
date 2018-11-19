@@ -1,8 +1,8 @@
 package my.listyoutubechannel.data;
 
 import io.reactivex.Observable;
-import my.listyoutubechannel.data.service.ChannelVideosResponse;
 import my.listyoutubechannel.data.service.YouTubeService;
+import my.listyoutubechannel.data.service.video.ChannelVideosResponse;
 
 /**
  * Created by ilian.
