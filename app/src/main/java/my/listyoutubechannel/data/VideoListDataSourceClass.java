@@ -5,10 +5,6 @@ import android.arch.lifecycle.MutableLiveData;
 import android.arch.paging.PageKeyedDataSource;
 import android.support.annotation.NonNull;
 
-import com.google.gson.FieldNamingPolicy;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,10 +19,6 @@ public class VideoListDataSourceClass extends PageKeyedDataSource<String, VideoL
 
     private YouTubeRepository repository;
 
-    private Gson gson;
-
-    private int sourceIndex;
-
     private MutableLiveData<String> progressLiveStatus;
 
     private CompositeDisposable compositeDisposable;
@@ -36,9 +28,6 @@ public class VideoListDataSourceClass extends PageKeyedDataSource<String, VideoL
         this.repository = repository;
         this.compositeDisposable = compositeDisposable;
         progressLiveStatus = new MutableLiveData<>();
-        GsonBuilder builder =
-                new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
-        gson = builder.setLenient().create();
     }
 
     public MutableLiveData<String> getProgressLiveStatus() {
@@ -52,33 +41,30 @@ public class VideoListDataSourceClass extends PageKeyedDataSource<String, VideoL
 
         repository.getChannelVideos(null).doOnSubscribe(disposable -> {
             compositeDisposable.add(disposable);
-            //progressLiveStatus.postValue(Constant.LOADING);
+            progressLiveStatus.postValue(Constants.LOADING);
         }).subscribe((ChannelVideosResponse result) -> {
-                         //progressLiveStatus.postValue(Constant.LOADED);
+            progressLiveStatus.postValue(Constants.LOADED);
 
-                         List<VideoListItem> list = new ArrayList<>();
+            List<VideoListItem> list = new ArrayList<>();
 
-                         for (Item item : result.getItems()) {
-                             String videoId = item.getId().getVideoId();
-                             final String title = item.getSnippet().getTitle();
+            for (Item item : result.getItems()) {
+                String videoId = item.getId().getVideoId();
+                final String title = item.getSnippet().getTitle();
 
-                             final String thumbnailUrl = item.getSnippet().getThumbnails().getMedium().getUrl();
+                final String thumbnailUrl = item.getSnippet().getThumbnails().getMedium().getUrl();
 
-                             list.add(new VideoListItem(videoId, title, thumbnailUrl));
+                list.add(new VideoListItem(videoId, title, thumbnailUrl));
 
-                             VideoDetail videoDetail = new VideoDetail(videoId,
-                                                                       title,
-                                                                       thumbnailUrl,
-                                                                       item.getSnippet().getPublishedAt(),
-                                                                       item.getSnippet().getDescription());
-                             //videoDetailMap.put(videoId, videoDetail);
-                         }
+                VideoDetail videoDetail = new VideoDetail(videoId,
+                                                          title,
+                                                          thumbnailUrl,
+                                                          item.getSnippet().getPublishedAt(),
+                                                          item.getSnippet().getDescription());
+                //videoDetailMap.put(videoId, videoDetail);
+            }
 
-                         callback.onResult(list, null, result.getNextPageToken());
-                     }, throwable -> {
-                     }//progressLiveStatus.postValue(Constant.LOADED)
-
-                    );
+            callback.onResult(list, null, result.getNextPageToken());
+        }, throwable -> progressLiveStatus.postValue(Constants.LOADED));
 
     }
 
@@ -95,9 +81,9 @@ public class VideoListDataSourceClass extends PageKeyedDataSource<String, VideoL
 
         repository.getChannelVideos(params.key).doOnSubscribe(disposable -> {
             compositeDisposable.add(disposable);
-            //progressLiveStatus.postValue(Constant.LOADING);
+            progressLiveStatus.postValue(Constants.LOADING);
         }).subscribe((ChannelVideosResponse result) -> {
-            //progressLiveStatus.postValue(Constant.LOADED);
+            progressLiveStatus.postValue(Constants.LOADED);
 
             List<VideoListItem> list = new ArrayList<>();
 
@@ -119,9 +105,6 @@ public class VideoListDataSourceClass extends PageKeyedDataSource<String, VideoL
 
             callback.onResult(list, result.getNextPageToken());
 
-        }, throwable ->
-                             //progressLiveStatus.postValue(Constant.LOADED)
-                     {
-                     });
+        }, throwable -> progressLiveStatus.postValue(Constants.LOADED));
     }
 }
