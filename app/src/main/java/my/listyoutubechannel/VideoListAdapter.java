@@ -40,7 +40,8 @@ public class VideoListAdapter extends PagedListAdapter<VideoListItem, VideoListA
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        viewHolder.bind(getItem(i), createClickListener());
+        final VideoListItem videoListItem = getItem(i);
+        viewHolder.bind(videoListItem, createClickListener(videoListItem.getId()));
     }
 
     @Override
@@ -48,10 +49,10 @@ public class VideoListAdapter extends PagedListAdapter<VideoListItem, VideoListA
         return super.getItemId(position);
     }
 
-    private View.OnClickListener createClickListener() {
+    private View.OnClickListener createClickListener(String videoId) {
         return view -> {
             VideoListFragmentDirections.ActionPlantListFragmentToPlantDetailFragment direction =
-                    VideoListFragmentDirections.actionPlantListFragmentToPlantDetailFragment("hello");
+                    VideoListFragmentDirections.actionPlantListFragmentToPlantDetailFragment(videoId);
             Navigation.findNavController(view).navigate(direction);
         };
     }
