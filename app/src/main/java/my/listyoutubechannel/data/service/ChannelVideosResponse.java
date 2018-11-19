@@ -24,6 +24,10 @@ public class ChannelVideosResponse {
     @Expose
     private String nextPageToken;
 
+    @SerializedName("prevPageToken")
+    @Expose
+    private String prevPageToken;
+
     @SerializedName("regionCode")
     @Expose
     private String regionCode;
@@ -56,10 +60,29 @@ public class ChannelVideosResponse {
                                  String regionCode,
                                  PageInfo pageInfo,
                                  List<Item> items) {
+        this(kind, etag, nextPageToken, null, regionCode, pageInfo, items);
+    }
+
+    /**
+     * @param regionCode
+     * @param etag
+     * @param items
+     * @param pageInfo
+     * @param nextPageToken
+     * @param kind
+     */
+    public ChannelVideosResponse(String kind,
+                                 String etag,
+                                 String nextPageToken,
+                                 String prevPageToken,
+                                 String regionCode,
+                                 PageInfo pageInfo,
+                                 List<Item> items) {
         super();
         this.kind = kind;
         this.etag = etag;
         this.nextPageToken = nextPageToken;
+        this.prevPageToken = prevPageToken;
         this.regionCode = regionCode;
         this.pageInfo = pageInfo;
         this.items = items;
@@ -87,6 +110,14 @@ public class ChannelVideosResponse {
 
     public void setNextPageToken(String nextPageToken) {
         this.nextPageToken = nextPageToken;
+    }
+
+    public String getPrevPageToken() {
+        return prevPageToken;
+    }
+
+    public void setPrevPageToken(String prevPageToken) {
+        this.prevPageToken = prevPageToken;
     }
 
     public String getRegionCode() {
