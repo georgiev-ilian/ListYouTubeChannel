@@ -11,19 +11,18 @@ public final class VideoDetail {
 
     private String thumbnailUrl;
 
-    private String dataPublished;
+    private String datePublished;
 
     private String description;
 
     public VideoDetail(String id,
                        String title,
-                       String thumbnailUrl,
-                       String dataPublished,
+                       String thumbnailUrl, String datePublished,
                        String description) {
         this.id = id;
         this.title = title;
         this.thumbnailUrl = thumbnailUrl;
-        this.dataPublished = dataPublished;
+        this.datePublished = datePublished;
         this.description = description;
     }
 
@@ -51,12 +50,12 @@ public final class VideoDetail {
         this.thumbnailUrl = thumbnailUrl;
     }
 
-    public String getDataPublished() {
-        return dataPublished;
+    public String getDatePublished() {
+        return datePublished;
     }
 
-    public void setDataPublished(String dataPublished) {
-        this.dataPublished = dataPublished;
+    public void setDatePublished(String datePublished) {
+        this.datePublished = datePublished;
     }
 
     public String getDescription() {
