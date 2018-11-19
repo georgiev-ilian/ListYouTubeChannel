@@ -117,7 +117,7 @@ public class VideoListDataSourceClass extends PageKeyedDataSource<String, VideoL
                 //videoDetailMap.put(videoId, videoDetail);
             }
 
-            callback.onResult(list, result.getPrevPageToken());
+            callback.onResult(list, result.getNextPageToken());
 
         }, throwable ->
                              //progressLiveStatus.postValue(Constant.LOADED)
