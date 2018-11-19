@@ -14,12 +14,16 @@ public class VideoListDataSourceFactory extends DataSource.Factory<String, Video
 
     private YouTubeRepository repository;
 
+    private VideoRepository videoRepository;
+
     private CompositeDisposable compositeDisposable;
 
     public VideoListDataSourceFactory(YouTubeRepository repository,
-                                      CompositeDisposable compositeDisposable) {
+                                      CompositeDisposable compositeDisposable,
+                                      VideoRepository videoRepository) {
         this.repository = repository;
         this.compositeDisposable = compositeDisposable;
+        this.videoRepository = videoRepository;
         liveData = new MutableLiveData<>();
     }
 
@@ -30,7 +34,8 @@ public class VideoListDataSourceFactory extends DataSource.Factory<String, Video
     @Override
     public DataSource<String, VideoListItem> create() {
         VideoListDataSourceClass dataSourceClass = new VideoListDataSourceClass(repository,
-                                                                                compositeDisposable);
+                                                                                compositeDisposable,
+                                                                                videoRepository);
         liveData.postValue(dataSourceClass);
         return dataSourceClass;
     }

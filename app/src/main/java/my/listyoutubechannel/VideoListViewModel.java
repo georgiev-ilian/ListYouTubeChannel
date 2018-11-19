@@ -12,6 +12,7 @@ import io.reactivex.disposables.CompositeDisposable;
 import my.listyoutubechannel.data.VideoListDataSourceClass;
 import my.listyoutubechannel.data.VideoListDataSourceFactory;
 import my.listyoutubechannel.data.VideoListItem;
+import my.listyoutubechannel.data.VideoRepository;
 import my.listyoutubechannel.data.YouTubeRepository;
 
 /**
@@ -27,9 +28,11 @@ public class VideoListViewModel extends ViewModel {
 
     private LiveData<String> progressLoadStatus = new MutableLiveData<>();
 
-    public VideoListViewModel(@NonNull YouTubeRepository youTubeRepository) {
+    public VideoListViewModel(@NonNull YouTubeRepository youTubeRepository,
+                              @NonNull VideoRepository videoRepository) {
         videoListDataSourceFactory = new VideoListDataSourceFactory(youTubeRepository,
-                                                                    compositeDisposable);
+                                                                    compositeDisposable,
+                                                                    videoRepository);
         initializePaging();
     }
 

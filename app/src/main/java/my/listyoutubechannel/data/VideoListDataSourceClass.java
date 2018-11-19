@@ -23,10 +23,15 @@ public class VideoListDataSourceClass extends PageKeyedDataSource<String, VideoL
 
     private CompositeDisposable compositeDisposable;
 
+    private final VideoRepository videoRepository;
+
     VideoListDataSourceClass(YouTubeRepository repository,
-                             CompositeDisposable compositeDisposable) {
+                             CompositeDisposable compositeDisposable,
+                             VideoRepository videoRepository) {
         this.repository = repository;
         this.compositeDisposable = compositeDisposable;
+        this.videoRepository = videoRepository;
+
         progressLiveStatus = new MutableLiveData<>();
     }
 
@@ -60,7 +65,7 @@ public class VideoListDataSourceClass extends PageKeyedDataSource<String, VideoL
                                                           thumbnailUrl,
                                                           item.getSnippet().getPublishedAt(),
                                                           item.getSnippet().getDescription());
-                //videoDetailMap.put(videoId, videoDetail);
+                videoRepository.addVideoDetail(videoId, videoDetail);
             }
 
             callback.onResult(list, null, result.getNextPageToken());
@@ -100,7 +105,7 @@ public class VideoListDataSourceClass extends PageKeyedDataSource<String, VideoL
                                                           thumbnailUrl,
                                                           item.getSnippet().getPublishedAt(),
                                                           item.getSnippet().getDescription());
-                //videoDetailMap.put(videoId, videoDetail);
+                videoRepository.addVideoDetail(videoId, videoDetail);
             }
 
             callback.onResult(list, result.getNextPageToken());
