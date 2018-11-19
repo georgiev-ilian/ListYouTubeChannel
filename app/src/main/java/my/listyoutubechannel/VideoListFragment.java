@@ -1,6 +1,5 @@
 package my.listyoutubechannel;
 
-import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,18 +10,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import my.listyoutubechannel.data.VideoListItem;
 import my.listyoutubechannel.util.InjectorUtils;
 
 /**
  * Created by ilian.
  */
 public class VideoListFragment extends Fragment {
-
-    private List<VideoListItem> itemList = new ArrayList<>();
 
     private VideoListViewModel viewModel;
 
@@ -38,19 +31,11 @@ public class VideoListFragment extends Fragment {
         VideoListViewModelFactory factory = InjectorUtils.provideVideoListViewModelFactory();
         viewModel = ViewModelProviders.of(this, factory).get(VideoListViewModel.class);
 
-        adapter = new VideoListAdapter(itemList);
+        adapter = new VideoListAdapter();
         final RecyclerView recyclerView = view.findViewById(R.id.channel_list);
         recyclerView.setAdapter(adapter);
 
-        viewModel.getVideoList().observe(getViewLifecycleOwner(),
-                                         new Observer<List<VideoListItem>>() {
-                                             @Override
-                                             public void onChanged(
-                                                     @Nullable List<VideoListItem> videoList) {
-                                                 adapter = new VideoListAdapter(videoList);
-                                                 recyclerView.setAdapter(adapter);
-                                             }
-                                         });
+        viewModel.getListLiveData().observe(this, adapter::submitList);
 
         setHasOptionsMenu(false);
 

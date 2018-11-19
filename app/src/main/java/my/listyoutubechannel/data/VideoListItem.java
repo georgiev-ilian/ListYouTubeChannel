@@ -1,6 +1,8 @@
 package my.listyoutubechannel.data;
 
 import android.databinding.BindingAdapter;
+import android.support.annotation.NonNull;
+import android.support.v7.util.DiffUtil;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -52,5 +54,34 @@ public final class VideoListItem {
         if (imageUrl != null && !imageUrl.isEmpty()) {
             Glide.with(view.getContext()).load(imageUrl).into(view);
         }
+    }
+
+    public static DiffUtil.ItemCallback<VideoListItem> DIFF_CALLBACK =
+            new DiffUtil.ItemCallback<VideoListItem>() {
+                @Override
+                public boolean areItemsTheSame(@NonNull VideoListItem oldItem,
+                                               @NonNull VideoListItem newItem) {
+                    return oldItem.id.equals(newItem.id);
+                }
+
+                @Override
+                public boolean areContentsTheSame(@NonNull VideoListItem oldItem,
+                                                  @NonNull VideoListItem newItem) {
+                    return oldItem.equals(newItem);
+                }
+            };
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+
+        if (!(obj instanceof VideoListItem)) {
+            return false;
+        }
+
+        VideoListItem article = (VideoListItem) obj;
+        return article.id.equals(this.id);
     }
 }

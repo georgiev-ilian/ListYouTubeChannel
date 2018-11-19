@@ -2,10 +2,12 @@ package my.listyoutubechannel;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.ViewModel;
+import android.arch.paging.LivePagedListBuilder;
+import android.arch.paging.PagedList;
 import android.support.annotation.NonNull;
 
-import java.util.List;
-
+import io.reactivex.disposables.CompositeDisposable;
+import my.listyoutubechannel.data.VideoListDataSourceFactory;
 import my.listyoutubechannel.data.VideoListItem;
 import my.listyoutubechannel.data.YouTubeRepository;
 
@@ -14,15 +16,36 @@ import my.listyoutubechannel.data.YouTubeRepository;
  */
 public class VideoListViewModel extends ViewModel {
 
-    private YouTubeRepository youTubeRepository;
+    private LiveData<PagedList<VideoListItem>> listLiveData;
 
-    //private MutableLiveData<List<Item>>
-    //private static final MutableLiveData
+    private VideoListDataSourceFactory videoListDataSourceFactory;
+
+    private CompositeDisposable compositeDisposable = new CompositeDisposable();
+
     public VideoListViewModel(@NonNull YouTubeRepository youTubeRepository) {
-        this.youTubeRepository = youTubeRepository;
+        videoListDataSourceFactory = new VideoListDataSourceFactory(youTubeRepository,
+                                                                    compositeDisposable);
+        initializePaging();
     }
 
-    public LiveData<List<VideoListItem>> getVideoList() {
-        return youTubeRepository.getChannelVideos();
+    private void initializePaging() {
+        PagedList.Config pagedListConfig =
+                new PagedList.Config.Builder().setEnablePlaceholders(true)
+                                              .setInitialLoadSizeHint(20)
+                                              .setPageSize(20)
+                                              .build();
+
+        listLiveData = new LivePagedListBuilder<>(videoListDataSourceFactory,
+                                                  pagedListConfig).build();
+    }
+
+    public LiveData<PagedList<VideoListItem>> getListLiveData() {
+        return listLiveData;
+    }
+
+    @Override
+    protected void onCleared() {
+        super.onCleared();
+        compositeDisposable.clear();
     }
 }

@@ -1,5 +1,6 @@
 package my.listyoutubechannel;
 
+import android.arch.paging.PagedListAdapter;
 import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -8,22 +9,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.List;
-
 import my.listyoutubechannel.data.VideoListItem;
 import my.listyoutubechannel.databinding.VideoListItemBinding;
 
 /**
  * Created by ilian.
  */
-public class VideoListAdapter extends RecyclerView.Adapter<VideoListAdapter.ViewHolder> {
-
-    private List<VideoListItem> videoList;
+public class VideoListAdapter extends PagedListAdapter<VideoListItem, VideoListAdapter.ViewHolder> {
 
     private LayoutInflater layoutInflater;
 
-    VideoListAdapter(List<VideoListItem> videoList) {
-        this.videoList = videoList;
+    VideoListAdapter() {
+        super(VideoListItem.DIFF_CALLBACK);
     }
 
     @NonNull
@@ -43,22 +40,16 @@ public class VideoListAdapter extends RecyclerView.Adapter<VideoListAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        VideoListItem item = videoList.get(i);
-        viewHolder.bind(item, createClickListener());
+        viewHolder.bind(getItem(i), createClickListener());
     }
 
     @Override
-    public int getItemCount() {
-        return videoList.size();
+    public long getItemId(int position) {
+        return super.getItemId(position);
     }
 
     private View.OnClickListener createClickListener() {
-        return new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.d("VideoListAdapter", "onClick: video");
-            }
-        };
+        return view -> Log.d("VideoListAdapter", "onClick: video");
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

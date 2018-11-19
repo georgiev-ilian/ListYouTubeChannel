@@ -1,6 +1,6 @@
 package my.listyoutubechannel.data.service;
 
-import retrofit2.Call;
+import io.reactivex.Observable;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -23,9 +23,10 @@ public class YouTubeService {
     public interface YouTube {
 
         @GET("search?part=snippet")
-        Call<ChannelVideosResponse> getChannelVideos(@Query("channelId") String channelId,
-                                                     @Query("maxResults") String maxResults,
-                                                     @Query("key") String key);
+        Observable<ChannelVideosResponse> getChannelVideos(@Query("channelId") String channelId,
+                                                           @Query("maxResults") String maxResults,
+                                                           @Query("key") String key,
+                                                           @Query("pageToken") String pageToken);
     }
 
     public static YouTube create() {
