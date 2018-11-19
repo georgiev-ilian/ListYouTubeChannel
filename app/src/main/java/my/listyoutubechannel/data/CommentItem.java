@@ -27,18 +27,12 @@ public final class CommentItem {
 
     private String textDisplay;
 
-    private String publishedAt;
-
     private String id;
 
-    public CommentItem(String id,
-                       String authorDisplayName,
-                       String textDisplay,
-                       String publishedAt) {
+    public CommentItem(String id, String authorDisplayName, String textDisplay) {
         this.id = id;
         this.authorDisplayName = authorDisplayName;
         this.textDisplay = textDisplay;
-        this.publishedAt = publishedAt;
     }
 
     public String getId() {
@@ -59,14 +53,6 @@ public final class CommentItem {
 
     public void setTextDisplay(String textDisplay) {
         this.textDisplay = textDisplay;
-    }
-
-    public String getPublishedAt() {
-        return publishedAt;
-    }
-
-    public void setPublishedAt(String publishedAt) {
-        this.publishedAt = publishedAt;
     }
 
     public void setId(String id) {

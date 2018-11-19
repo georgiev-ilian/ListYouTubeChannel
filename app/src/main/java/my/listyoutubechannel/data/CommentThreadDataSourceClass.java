@@ -91,10 +91,9 @@ public class CommentThreadDataSourceClass extends PageKeyedDataSource<String, Co
 
             String authorDisplayName = topLevelComment.getSnippet().getAuthorDisplayName();
             String textDisplay = topLevelComment.getSnippet().getTextDisplay();
-            String publishedAt = topLevelComment.getSnippet().getPublishedAt();
             String id = topLevelComment.getId();
 
-            list.add(new CommentItem(id, authorDisplayName, textDisplay, publishedAt));
+            list.add(new CommentItem(id, authorDisplayName, textDisplay));
         }
         return list;
     }
