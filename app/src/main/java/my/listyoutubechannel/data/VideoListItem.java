@@ -84,4 +84,13 @@ public final class VideoListItem {
         VideoListItem article = (VideoListItem) obj;
         return article.id.equals(this.id);
     }
+
+    @Override
+    public int hashCode() {
+        int hashValue = 11;
+
+        hashValue = 31 * hashValue + this.id.hashCode();
+
+        return hashValue;
+    }
 }
