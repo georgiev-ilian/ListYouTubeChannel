@@ -12,6 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.Objects;
+
+import my.listyoutubechannel.data.Constants;
 import my.listyoutubechannel.databinding.FragmentVideoDetailBinding;
 import my.listyoutubechannel.util.InjectorUtils;
 
@@ -25,6 +28,8 @@ public class VideoDetailFragment extends Fragment {
     private static final String ARG_ITEM_ITEM = "item_id";
 
     private VideoDetailViewModel viewModel;
+
+    private CommentListAdapter adapter;
 
     public static VideoDetailFragment newInstance(String videoId) {
         Bundle args = new Bundle();
@@ -59,8 +64,21 @@ public class VideoDetailFragment extends Fragment {
         VideoDetailViewModelFactory factory = InjectorUtils.provideVideoDetailViewModelFactory(
                 videoId);
 
+        adapter = new CommentListAdapter();
+        binding.commentList.setAdapter(adapter);
+
         viewModel = ViewModelProviders.of(this, factory).get(VideoDetailViewModel.class);
+
+        viewModel.getListLiveData().observe(this, adapter::submitList);
         viewModel.getVideoDetail().observe(this, binding::setVideoDetail);
+
+        viewModel.getProgressLoadStatus().observe(this, status -> {
+            if (Objects.requireNonNull(status).equalsIgnoreCase(Constants.LOADING)) {
+                binding.progress.setVisibility(View.VISIBLE);
+            } else if (status.equalsIgnoreCase(Constants.LOADED)) {
+                binding.progress.setVisibility(View.GONE);
+            }
+        });
     }
 
     @BindingAdapter("app:datePublishedText")

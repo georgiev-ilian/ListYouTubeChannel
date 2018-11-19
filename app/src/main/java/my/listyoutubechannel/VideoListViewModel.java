@@ -14,6 +14,7 @@ import my.listyoutubechannel.data.VideoListDataSourceFactory;
 import my.listyoutubechannel.data.VideoListItem;
 import my.listyoutubechannel.data.VideoRepository;
 import my.listyoutubechannel.data.YouTubeRepository;
+import my.listyoutubechannel.util.InjectorUtils;
 
 /**
  * Created by ilian.
@@ -37,10 +38,7 @@ public class VideoListViewModel extends ViewModel {
     }
 
     private void initializePaging() {
-        PagedList.Config pagedListConfig =
-                new PagedList.Config.Builder().setEnablePlaceholders(true).setInitialLoadSizeHint(
-                        YouTubeRepository.MAX_RESULTS).setPageSize(YouTubeRepository.MAX_RESULTS)
-                                              .build();
+        PagedList.Config pagedListConfig = InjectorUtils.providePagedListConfig();
 
         listLiveData = new LivePagedListBuilder<>(videoListDataSourceFactory,
                                                   pagedListConfig).build();

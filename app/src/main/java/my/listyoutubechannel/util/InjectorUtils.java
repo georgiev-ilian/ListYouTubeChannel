@@ -1,5 +1,7 @@
 package my.listyoutubechannel.util;
 
+import android.arch.paging.PagedList;
+
 import my.listyoutubechannel.VideoDetailViewModelFactory;
 import my.listyoutubechannel.VideoListViewModelFactory;
 import my.listyoutubechannel.data.VideoRepository;
@@ -22,5 +24,10 @@ public final class InjectorUtils {
         VideoRepository videoRepository = VideoRepository.getInstance();
 
         return new VideoDetailViewModelFactory(repository, videoRepository, videoId);
+    }
+
+    public static PagedList.Config providePagedListConfig() {
+        return new PagedList.Config.Builder().setEnablePlaceholders(true).setInitialLoadSizeHint(
+                YouTubeRepository.MAX_RESULTS).setPageSize(YouTubeRepository.MAX_RESULTS).build();
     }
 }
