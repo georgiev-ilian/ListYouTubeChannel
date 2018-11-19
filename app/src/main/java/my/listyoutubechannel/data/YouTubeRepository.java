@@ -3,7 +3,7 @@ package my.listyoutubechannel.data;
 import io.reactivex.Observable;
 import my.listyoutubechannel.data.service.YouTubeService;
 import my.listyoutubechannel.data.service.comment.CommentThreadResponse;
-import my.listyoutubechannel.data.service.video.ChannelVideosResponse;
+import my.listyoutubechannel.data.service.search.ChannelVideosResponse;
 
 /**
  * Created by ilian.

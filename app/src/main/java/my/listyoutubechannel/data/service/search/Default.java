@@ -1,4 +1,4 @@
-package my.listyoutubechannel.data.service.video;
+package my.listyoutubechannel.data.service.search;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -7,7 +7,7 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-public class Medium {
+public class Default {
 
     @SerializedName("url")
     @Expose
@@ -24,7 +24,7 @@ public class Medium {
     /**
      * No args constructor for use in serialization
      */
-    public Medium() {
+    public Default() {
     }
 
     /**
@@ -32,7 +32,7 @@ public class Medium {
      * @param width
      * @param url
      */
-    public Medium(String url, int width, int height) {
+    public Default(String url, int width, int height) {
         super();
         this.url = url;
         this.width = width;
@@ -73,10 +73,10 @@ public class Medium {
         if (other == this) {
             return true;
         }
-        if ((other instanceof Medium) == false) {
+        if ((other instanceof Default) == false) {
             return false;
         }
-        Medium rhs = ((Medium) other);
+        Default rhs = ((Default) other);
         return new EqualsBuilder().append(height, rhs.height)
                                   .append(width, rhs.width)
                                   .append(url,

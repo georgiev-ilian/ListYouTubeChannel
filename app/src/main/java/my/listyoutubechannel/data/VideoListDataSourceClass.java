@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.disposables.CompositeDisposable;
-import my.listyoutubechannel.data.service.video.ChannelVideosResponse;
-import my.listyoutubechannel.data.service.video.Item;
+import my.listyoutubechannel.data.service.search.ChannelVideosResponse;
+import my.listyoutubechannel.data.service.search.Item;
 
 /**
  * Created by ilian.

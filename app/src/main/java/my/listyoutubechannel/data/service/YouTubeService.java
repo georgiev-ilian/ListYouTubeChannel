@@ -2,7 +2,7 @@ package my.listyoutubechannel.data.service;
 
 import io.reactivex.Observable;
 import my.listyoutubechannel.data.service.comment.CommentThreadResponse;
-import my.listyoutubechannel.data.service.video.ChannelVideosResponse;
+import my.listyoutubechannel.data.service.search.ChannelVideosResponse;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
