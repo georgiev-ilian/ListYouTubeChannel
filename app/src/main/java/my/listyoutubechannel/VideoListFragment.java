@@ -21,10 +21,6 @@ import my.listyoutubechannel.util.InjectorUtils;
  */
 public class VideoListFragment extends Fragment {
 
-    private VideoListViewModel viewModel;
-
-    private VideoListAdapter adapter;
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -36,11 +32,12 @@ public class VideoListFragment extends Fragment {
                                                                    false);
 
         VideoListViewModelFactory factory = InjectorUtils.provideVideoListViewModelFactory();
-        viewModel = ViewModelProviders.of(this, factory).get(VideoListViewModel.class);
+        VideoListViewModel viewModel = ViewModelProviders.of(this, factory)
+                                                         .get(VideoListViewModel.class);
 
         binding.setLifecycleOwner(this);
 
-        adapter = new VideoListAdapter();
+        VideoListAdapter adapter = new VideoListAdapter();
         binding.channelList.setAdapter(adapter);
 
         viewModel.getListLiveData().observe(this, adapter::submitList);
