@@ -1,6 +1,7 @@
 package my.listyoutubechannel.data.service;
 
 import io.reactivex.Observable;
+import my.listyoutubechannel.data.service.comment.CommentThreadResponse;
 import my.listyoutubechannel.data.service.video.ChannelVideosResponse;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -27,6 +28,12 @@ public class YouTubeService {
 
         @GET("search?part=snippet&order=date")
         Observable<ChannelVideosResponse> getChannelVideos(@Query("channelId") String channelId,
+                                                           @Query("maxResults") String maxResults,
+                                                           @Query("key") String key,
+                                                           @Query("pageToken") String pageToken);
+
+        @GET("commentThreads?part=snippet")
+        Observable<CommentThreadResponse> getCommentThread(@Query("videoId") String videoId,
                                                            @Query("maxResults") String maxResults,
                                                            @Query("key") String key,
                                                            @Query("pageToken") String pageToken);
