@@ -16,18 +16,34 @@
         android:layout_height="wrap_content">
 
         <TextView
+            android:id="@+id/comment_author_display_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_small"
+            android:layout_marginTop="@dimen/comment_list_item_author_display_name_margin_top"
+            android:layout_marginEnd="@dimen/margin_small"
+            android:layout_marginBottom="@dimen/comment_list_item_author_display_name_margin_bottom"
+            android:textAppearance="?attr/textAppearanceListItemSecondary"
+            android:textStyle="bold"
+            app:commentTextDisplayText="@{item.authorDisplayName}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Author display name"/>
+
+        <TextView
             android:id="@+id/comment_text_display"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/video_list_item_title_margin_top"
-            android:layout_marginBottom="@dimen/margin_small"
+            android:layout_marginTop="@dimen/comment_list_item_text_display_margin_top"
+            android:layout_marginBottom="@dimen/comment_list_item_text_display_margin_bottom"
             android:layout_marginStart="@dimen/margin_small"
             android:layout_marginEnd="@dimen/margin_small"
             android:textAppearance="?attr/textAppearanceListItemSecondary"
             app:commentTextDisplayText="@{item.textDisplay}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/comment_author_display_name"
             tools:text="Video comment"/>
 
     </android.support.constraint.ConstraintLayout>

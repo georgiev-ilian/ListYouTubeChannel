@@ -2,7 +2,13 @@
 <resources>
     <dimen name="margin_normal">16dp</dimen>
     <dimen name="margin_small">8dp</dimen>
+
     <dimen name="video_list_item_title_margin_top">5dp</dimen>
+    <dimen name="comment_list_item_margin_top">5dp</dimen>
+    <dimen name="comment_list_item_text_display_margin_top">0dp</dimen>
+    <dimen name="comment_list_item_author_display_name_margin_top">5dp</dimen>
+    <dimen name="comment_list_item_text_display_margin_bottom">15dp</dimen>
+    <dimen name="comment_list_item_author_display_name_margin_bottom">5dp</dimen>
 
     <dimen name="video_list_item_thumbnail_height">180dp</dimen>
     <dimen name="video_list_item_thumbnail_width">320dp</dimen>
