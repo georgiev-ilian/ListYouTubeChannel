@@ -1,5 +1,6 @@
 package my.listyoutubechannel.util;
 
+import my.listyoutubechannel.VideoDetailViewModelFactory;
 import my.listyoutubechannel.VideoListViewModelFactory;
 import my.listyoutubechannel.data.VideoRepository;
 import my.listyoutubechannel.data.YouTubeRepository;
@@ -14,5 +15,12 @@ public final class InjectorUtils {
         VideoRepository videoRepository = VideoRepository.getInstance();
 
         return new VideoListViewModelFactory(repository, videoRepository);
+    }
+
+    public static VideoDetailViewModelFactory provideVideoDetailViewModelFactory(String videoId) {
+        YouTubeRepository repository = YouTubeRepository.getInstance();
+        VideoRepository videoRepository = VideoRepository.getInstance();
+
+        return new VideoDetailViewModelFactory(repository, videoRepository, videoId);
     }
 }

@@ -6,4 +6,6 @@
 
     <dimen name="video_list_item_thumbnail_height">180dp</dimen>
     <dimen name="video_list_item_thumbnail_width">320dp</dimen>
+
+    <dimen name="app_bar_height">200dp</dimen>
 </resources>

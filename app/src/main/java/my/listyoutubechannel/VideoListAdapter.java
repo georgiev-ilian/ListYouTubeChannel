@@ -51,8 +51,8 @@ public class VideoListAdapter extends PagedListAdapter<VideoListItem, VideoListA
 
     private View.OnClickListener createClickListener(String videoId) {
         return view -> {
-            VideoListFragmentDirections.ActionPlantListFragmentToPlantDetailFragment direction =
-                    VideoListFragmentDirections.actionPlantListFragmentToPlantDetailFragment(videoId);
+            VideoListFragmentDirections.ActionVideoListFragmentToVideoDetailFragment direction =
+                    VideoListFragmentDirections.actionVideoListFragmentToVideoDetailFragment(videoId);
             Navigation.findNavController(view).navigate(direction);
         };
     }

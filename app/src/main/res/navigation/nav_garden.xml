@@ -11,7 +11,7 @@
         tools:layout="@layout/fragment_video_list">
 
         <action
-            android:id="@+id/action_plant_list_fragment_to_plant_detail_fragment"
+            android:id="@+id/action_video_list_fragment_to_video_detail_fragment"
             app:destination="@id/video_detail_fragment"
             />
     </fragment>
