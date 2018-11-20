@@ -22,6 +22,7 @@ import java.util.Objects;
 
 import my.listyoutubechannel.data.Constants;
 import my.listyoutubechannel.databinding.FragmentVideoDetailBinding;
+import my.listyoutubechannel.util.Duration;
 import my.listyoutubechannel.util.InjectorUtils;
 
 import static my.listyoutubechannel.util.ViewUtil.setTextWithSpanLabel;
@@ -108,5 +109,12 @@ public class VideoDetailFragment extends Fragment {
     public static void setCommentTextDisplayText(TextView view, String commentTextDisplayText) {
         view.setText(Html.fromHtml(commentTextDisplayText));
         view.setMovementMethod(LinkMovementMethod.getInstance());
+    }
+
+    @BindingAdapter("app:durationText")
+    public static void setDurationText(TextView view, String durationText) {
+        if (durationText != null) {
+            setTextWithSpanLabel(view, Duration.parse(durationText).toString());
+        }
     }
 }
