@@ -10,7 +10,7 @@ import android.widget.TextView;
  */
 public final class ViewUtil {
 
-    public static void setTextWithSpanLabel(TextView view, String textString) {
+    public static void setTextWithSpanLabel(TextView view, String label, String textString) {
         if (textString == null) {
             return;
         }
@@ -18,7 +18,6 @@ public final class ViewUtil {
         final StyleSpan bold = new StyleSpan(android.graphics.Typeface.BOLD);
         final StyleSpan italic = new StyleSpan(android.graphics.Typeface.ITALIC);
 
-        CharSequence label = view.getText();
         String text = label + " " + textString;
 
         final SpannableStringBuilder sb = new SpannableStringBuilder(text);

@@ -87,7 +87,7 @@ public class VideoDetailFragment extends Fragment {
 
     @BindingAdapter("app:datePublishedText")
     public static void setDatePublished(TextView view, String datePublishedText) {
-        if (datePublishedText != null) {
+        if (datePublishedText != null && !datePublishedText.isEmpty()) {
             String text;
 
             try {
@@ -101,7 +101,9 @@ public class VideoDetailFragment extends Fragment {
                 text = datePublishedText;
             }
 
-            setTextWithSpanLabel(view, text);
+            String label =
+                    view.getContext().getResources().getString(R.string.label_video_date_published);
+            setTextWithSpanLabel(view, label, text);
         }
     }
 
@@ -113,8 +115,10 @@ public class VideoDetailFragment extends Fragment {
 
     @BindingAdapter("app:durationText")
     public static void setDurationText(TextView view, String durationText) {
-        if (durationText != null) {
-            setTextWithSpanLabel(view, Duration.parse(durationText).toString());
+        if (durationText != null && !durationText.isEmpty()) {
+            String label =
+                    view.getContext().getResources().getString(R.string.label_video_duration);
+            setTextWithSpanLabel(view, label, Duration.parse(durationText).toString());
         }
     }
 }
