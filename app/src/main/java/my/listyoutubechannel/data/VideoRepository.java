@@ -41,6 +41,7 @@ public class VideoRepository {
 
                                  ((MutableLiveData<VideoDetail>) data).postValue(videoDetail);
                              }
+                         }, throwable -> {
                          });
 
         return data;
