@@ -121,4 +121,14 @@ public class VideoDetailFragment extends Fragment {
             setTextWithSpanLabel(view, label, Duration.parse(durationText).toString());
         }
     }
+
+    @BindingAdapter("app:descriptionText")
+    public static void setDescriptionText(TextView view, String descriptionText) {
+        if (descriptionText == null) {
+            return;
+        }
+
+        view.setText(Html.fromHtml(descriptionText));
+        view.setMovementMethod(LinkMovementMethod.getInstance());
+    }
 }
